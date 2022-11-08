@@ -239,13 +239,13 @@ export default class Home extends PureComponent {
   }
 
   componentDidMount() {
-  
     this.checkStatusAndNavigate();
     // let uuid = localStorage.getItem('uuid')
 
 
     fetch(
-      "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json",
+      "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json"
+  
     )
       // Handle the response from backend here
       .then((res) => {
@@ -253,6 +253,7 @@ export default class Home extends PureComponent {
         if (res.status == 200) {
 
           this.setState({ currencyConverter: res.data.usd })
+          console.log("fetch data2",res.data.usd)
         }
       })
       // Catch errors if any
@@ -260,13 +261,16 @@ export default class Home extends PureComponent {
         console.log(err, 'axiox err iban')
       });
 
-    fetch("https://min-api.cryptocompare.com/data/pricemulti?fsyms=sclp&tsyms=usd",
+    fetch(
+      "https://min-api.cryptocompare.com/data/pricemulti?fsyms=sclp&tsyms=usd"
+   
     )
       // Handle the response from backend here
       .then((res) => {
 
         if (res.status == 200) {
           this.setState({ sclpCurrencyConverter: res.data.SCLP.USD })
+          console.log("fetch data1", res.data.SCLP.USD)
         }
       })
       // Catch errors if any
@@ -307,71 +311,74 @@ export default class Home extends PureComponent {
     
 
     if (this.props.selectedAddress != this.state.selAcc) {
-      // this.state.selAcc = this.props.selectedAddress
-      // let uuid = localStorage.getItem('uuid')
-      // fetch({
-      //   url: process.env.MODULER_API_URI + "/api/selected-address",
-      //   method: "POST",
-      //   data: {
-      //     "UUID": uuid,
-      //     "selectedAddress": this.props.selectedAddress,
-      //   },
-      // })
-      //   // Handle the response from backend here
-      //   .then((res) => {
-      //     // console.log(res, 'selected res')
-      //     if (res.status == 200) {
-      //       fetch({
-      //         url: process.env.MODULER_API_URI + "/api/whitelist/address/add",
-      //         method: "POST",
-      //         data: {
-      //           "UUID": uuid,
-      //           "selectedAddress": this.props.selectedAddress,
-      //         },
-      //       })
-      //         // Handle the response from backend here
-      //         .then((ress) => {
-      //           // console.log(res, 'selected res')
-      //           if (ress.status == 200) {
-      //             console.log('selected address', ress);
-      //             // console.log('his.props.selectedAddress.toLowerCase()', this.props.selectedAddress.toLowerCase())
-      //             // let uuid = res.data.uuid
-      //             // console.log(uuid, 'selected uuid')
-      //             // localStorage.setItem('uuid', uuid);
+      this.state.selAcc = this.props.selectedAddress
+      let uuid = localStorage.getItem('uuid')
+      fetch(
+        "http://3.9.3.68:3000/api/selected-address",
+        {
+        method: "POST",
+        data: {
+          "UUID": uuid,
+          "selectedAddress": this.props.selectedAddress,
+        },
+      })
+        // Handle the response from backend here
+        .then((res) => {
+          // console.log(res, 'selected res')
+          if (res.status == 200) {
+            fetch(
+              "http://3.9.3.68:3000/api/selected-address",
+              {
+              method: "POST",
+              data: {
+                "UUID": uuid,
+                "selectedAddress": this.props.selectedAddress,
+              },
+            })
+              // Handle the response from backend here
+              .then((ress) => {
+                // console.log(res, 'selected res')
+                if (ress.status == 200) {
+                  console.log('selected address', ress);
+                  // console.log('his.props.selectedAddress.toLowerCase()', this.props.selectedAddress.toLowerCase())
+                  let uuid = res.data.uuid
+                  console.log(uuid, 'selected uuid')
+                  localStorage.setItem('uuid', uuid);
       
       
-      //             if (uuid) {
-      //               // axios({
-      //               //   url: process.env.MODULER_API_URI + "/api/account-details",
-      //               //   method: "POST",
-      //               //   data: { "UUID": uuid },
-      //               // })
-      //               //   // Handle the response from backend here
-      //               //   .then((res) => {
-      //               //     if (res.status == 200) {
-      //               //       this.setState({ iBanName: res.data })
-      //               //       console.log(res.data, 'res.data');
-      //               //     }
-      //               //   })
-      //               //   // Catch errors if any
-      //               //   .catch((err) => {
-      //               //     console.log(err, 'axiox err iban')
-      //               //   });
-      //             }
-      //             console.log(this.state.iBanName, 'this.state.iBanName');
-      //           }
-      //         })
-      //         // Catch errors if any
-      //         .catch((err) => {
-      //           console.log(err, 'axiox err update address')
-      //         });
+                  if (uuid) {
+                    fetch(
+                      "http://3.9.3.68:3000/api/selected-address",
+                      {
+                      method: "POST",
+                      data: { "UUID": uuid },
+                    })
+                      // Handle the response from backend here
+                      .then((res) => {
+                        if (res.status == 200) {
+                          this.setState({ iBanName: res.data })
+                          console.log(res.data, 'res.data');
+                        }
+                      })
+                      // Catch errors if any
+                      .catch((err) => {
+                        console.log(err, 'axiox err iban')
+                      });
+                  }
+                  console.log(this.state.iBanName, 'this.state.iBanName');
+                }
+              })
+              // Catch errors if any
+              .catch((err) => {
+                console.log(err, 'axiox err update address')
+              });
       
-      //     }
-      //   })
-      //   // Catch errors if any
-      //   .catch((err) => {
-      //     console.log(err, 'axiox err whitelist')
-      //   });
+          }
+        })
+        // Catch errors if any
+        .catch((err) => {
+          console.log(err, 'axiox err whitelist')
+        });
 
 
 

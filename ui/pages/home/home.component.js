@@ -668,28 +668,28 @@ export default class Home extends PureComponent {
     );
   };
 
-  renderBalance = (pageName) => {
-    console.log(pageName)
-    switch (pageName) {
-      case "Assets":
-        return (
-          <div className='home__BalanceData'>
-            <label>313131</label>
-          </div>
-        );
-        break;
-      case "Fiat":
-        return (
-          <div className='BalanceDataValue'>
-            <label>2131</label>
-          </div>
-        );
-        break;
-      default:
-        return null;
-    }
+  // renderBalance = (pageName) => {
+  //   console.log(pageName)
+  //   switch (pageName) {
+  //     case "Assets":
+  //       return (
+  //         <div className='home__BalanceData'>
+  //           <label>313131</label>
+  //         </div>
+  //       );
+  //       break;
+  //     case "Fiat":
+  //       return (
+  //         <div className='BalanceDataValue'>
+  //           <label>2131</label>
+  //         </div>
+  //       );
+  //       break;
+  //     default:
+  //       return null;
+  //   }
 
-  }
+  // }
 
   render() {
 

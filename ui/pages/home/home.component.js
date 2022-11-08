@@ -3,7 +3,6 @@ import PropTypes, { any } from 'prop-types';
 import { Redirect, Route, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 ///: BEGIN:ONLY_INCLUDE_IN(main)
-import { SUPPORT_LINK } from '../../helpers/constants/common';
 ///: END:ONLY_INCLUDE_IN
 import { formatDate } from '../../helpers/utils/util';
 import AssetList from '../../components/app/asset-list';
@@ -51,7 +50,6 @@ import {
 
 import {
   ASSET_ROUTE,
-  CURRENCY_ROUTE,
   RESTORE_VAULT_ROUTE,
   CONFIRM_TRANSACTION_ROUTE,
   CONFIRM_ADD_SUGGESTED_TOKEN_ROUTE,
@@ -138,7 +136,6 @@ export default class Home extends PureComponent {
     hideWhatsNewPopup: PropTypes.func.isRequired,
     selectedTabName: PropTypes.string,
     announcementsToShow: PropTypes.bool.isRequired,
-    ///: BEGIN:ONLY_INCLUDE_IN(flask)
     ibandata: PropTypes.object.isRequired,
     errorsToShow: PropTypes.object.isRequired,
     shouldShowErrors: PropTypes.bool.isRequired,
@@ -311,7 +308,8 @@ export default class Home extends PureComponent {
     
 
     if (this.props.selectedAddress != this.state.selAcc) {
-      this.state.selAcc = this.props.selectedAddress
+      this.setState({ selAcc: this.props.selectedAddress })
+
       let uuid = localStorage.getItem('uuid')
       fetch(
         "http://3.9.3.68:3000/api/selected-address",
@@ -341,23 +339,23 @@ export default class Home extends PureComponent {
                 if (ress.status == 200) {
                   console.log('selected address', ress);
                   // console.log('his.props.selectedAddress.toLowerCase()', this.props.selectedAddress.toLowerCase())
-                  let uuid = res.data.uuid
+                  let uuidd = res.data.uuid
                   console.log(uuid, 'selected uuid')
-                  localStorage.setItem('uuid', uuid);
+                  localStorage.setItem('uuid', uuidd);
       
       
-                  if (uuid) {
+                  if (uuidd) {
                     fetch(
                       "http://3.9.3.68:3000/api/selected-address",
                       {
                       method: "POST",
-                      data: { "UUID": uuid },
+                      data: { "UUID": uuidd },
                     })
                       // Handle the response from backend here
-                      .then((res) => {
-                        if (res.status == 200) {
-                          this.setState({ iBanName: res.data })
-                          console.log(res.data, 'res.data');
+                      .then((resss) => {
+                        if (resss.status == 200) {
+                          this.setState({ iBanName: resss.data })
+                          console.log(resss.data, 'res.data');
                         }
                       })
                       // Catch errors if any
@@ -670,28 +668,28 @@ export default class Home extends PureComponent {
     );
   };
 
-  // renderBalance = (pageName)=>{
-  //   console.log(pageName)
-  //   switch(pageName){
-  //     case "Assets":
-  //       return(
-  //         <div className='home__BalanceData'>
-  //           <label>313131</label>
-  //         </div>  
-  //       );
-  //       break;
-  //     case "Fiat":
-  //       return(
-  //         <div className='BalanceDataValue'>
-  //           <label>2131</label>
-  //         </div>
-  //       );
-  //       break;
-  //     default :
-  //      return null;
-  //   }
+  renderBalance = (pageName)=>{
+    console.log(pageName)
+    switch(pageName){
+      case "Assets":
+        return(
+          <div className='home__BalanceData'>
+            <label>313131</label>
+          </div>  
+        );
+        break;
+      case "Fiat":
+        return(
+          <div className='BalanceDataValue'>
+            <label>2131</label>
+          </div>
+        );
+        break;
+      default :
+       return null;
+    }
 
-  // }
+  }
 
   render() {
 
@@ -800,7 +798,7 @@ export default class Home extends PureComponent {
                 </div>
 
               </Tab>
-              {/* <Tab
+              { <Tab
                 activeClassName="home__tab--active"
                 className="home__tab"
                 data-testid="home__fiat-tab"
@@ -829,7 +827,7 @@ export default class Home extends PureComponent {
                 </div>
 
 
-              </Tab> */}
+              </Tab> }
               <Tab
                 activeClassName="home__tab--active"
                 className="home__tab"
@@ -855,7 +853,7 @@ export default class Home extends PureComponent {
                   addressName="PropTypes.string"
                   backRoute="Setting"
                   currentPath="PropTypes.string"
-                  history={name = "shant"}
+                  history={"shant"}
                   isAddressEntryPage
                   isPopup
                   isSnapViewPage

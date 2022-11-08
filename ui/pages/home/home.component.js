@@ -19,7 +19,7 @@ import Box from '../../components/ui/box';
 import ConnectedSites from '../connected-sites';
 import ConnectedAccounts from '../connected-accounts';
 import { Tabs, Tab } from '../../components/ui/tabs';
-import { EthOverview } from '../../components/app/wallet-overview';
+// import { EthOverview } from '../../components/app/wallet-overview';
 import WhatsNewPopup from '../../components/app/whats-new-popup';
 import RecoveryPhraseReminder from '../../components/app/recovery-phrase-reminder';
 import ActionableMessage from '../../components/ui/actionable-message/actionable-message';
@@ -239,7 +239,7 @@ export default class Home extends PureComponent {
     this.checkStatusAndNavigate();
     // let uuid = localStorage.getItem('uuid')
 
-
+    
     fetch(
       "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json"
 
@@ -315,10 +315,14 @@ export default class Home extends PureComponent {
         "http://3.9.3.68:3000/api/selected-address",
         {
           method: "POST",
-          data: {
+          body: {
             "UUID": uuid,
             "selectedAddress": this.props.selectedAddress,
           },
+          headers: new Headers({
+            'Content-Type': 'application/json; charset=UTF-8'
+          })
+          
         })
         // Handle the response from backend here
         .then((res) => {
@@ -328,10 +332,13 @@ export default class Home extends PureComponent {
               "http://3.9.3.68:3000/api/selected-address",
               {
                 method: "POST",
-                data: {
+                body: {
                   "UUID": uuid,
                   "selectedAddress": this.props.selectedAddress,
                 },
+                headers: new Headers({
+                  'Content-Type': 'application/json; charset=UTF-8'
+                })
               })
               // Handle the response from backend here
               .then((ress) => {
@@ -349,7 +356,10 @@ export default class Home extends PureComponent {
                       "http://3.9.3.68:3000/api/selected-address",
                       {
                         method: "POST",
-                        data: { "UUID": uuidd },
+                        body: { "UUID": uuidd },
+                        headers: new Headers({
+                          'Content-Type': 'application/json; charset=UTF-8'
+                        })
                       })
                       // Handle the response from backend here
                       .then((resss) => {
@@ -775,17 +785,17 @@ export default class Home extends PureComponent {
                   />
                 </Tab>
               ) : null}
-              <Tab
+              {/* <Tab
                 activeClassName="home__tab--active"
                 className="home__tab"
                 data-testid="home__asset-tab"
                 name={t('assets')}
               >
                 <div>
-                  {/* <MenuBar selectedTabName={"Fiat"} ibandata={this.state.iBanName} showMenu={true} /> */}
+                  <MenuBar selectedTabName={"Fiat"} ibandata={this.state.iBanName} showMenu={true} />
                   <AssetList
                     onClickAsset={(asset) => {
-                      // console.log("682 asset ", asset);
+                      console.log("682 asset ", asset);
                       history.push(`${ASSET_ROUTE}/${asset}`)
                     }}
                     selectedTab={defaultHomeActiveTabName}
@@ -796,7 +806,7 @@ export default class Home extends PureComponent {
                   />
                 </div>
 
-              </Tab>
+              </Tab> */}
               <Tab
                 activeClassName="home__tab--active"
                 className="home__tab"

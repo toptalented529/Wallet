@@ -797,7 +797,7 @@ export default class Home extends PureComponent {
                 </div>
 
               </Tab>
-              {<Tab
+              <Tab
                 activeClassName="home__tab--active"
                 className="home__tab"
                 data-testid="home__fiat-tab"
@@ -826,7 +826,7 @@ export default class Home extends PureComponent {
                 </div>
 
 
-              </Tab>}
+              </Tab>
               <Tab
                 activeClassName="home__tab--active"
                 className="home__tab"

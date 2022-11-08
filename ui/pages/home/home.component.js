@@ -242,7 +242,7 @@ export default class Home extends PureComponent {
 
     fetch(
       "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json"
-  
+
     )
       // Handle the response from backend here
       .then((res) => {
@@ -250,7 +250,7 @@ export default class Home extends PureComponent {
         if (res.status == 200) {
 
           this.setState({ currencyConverter: res.data.usd })
-          console.log("fetch data2",res.data.usd)
+          console.log("fetch data2", res.data.usd)
         }
       })
       // Catch errors if any
@@ -260,7 +260,7 @@ export default class Home extends PureComponent {
 
     fetch(
       "https://min-api.cryptocompare.com/data/pricemulti?fsyms=sclp&tsyms=usd"
-   
+
     )
       // Handle the response from backend here
       .then((res) => {
@@ -305,21 +305,21 @@ export default class Home extends PureComponent {
     ) {
       setupThreeBox();
     }
-    
+
 
     if (this.props.selectedAddress != this.state.selAcc) {
       this.setState({ selAcc: this.props.selectedAddress })
 
-      let uuid = localStorage.getItem('uuid')
+      let uuid = window.localStorage.getItem('uuid')
       fetch(
         "http://3.9.3.68:3000/api/selected-address",
         {
-        method: "POST",
-        data: {
-          "UUID": uuid,
-          "selectedAddress": this.props.selectedAddress,
-        },
-      })
+          method: "POST",
+          data: {
+            "UUID": uuid,
+            "selectedAddress": this.props.selectedAddress,
+          },
+        })
         // Handle the response from backend here
         .then((res) => {
           // console.log(res, 'selected res')
@@ -327,12 +327,12 @@ export default class Home extends PureComponent {
             fetch(
               "http://3.9.3.68:3000/api/selected-address",
               {
-              method: "POST",
-              data: {
-                "UUID": uuid,
-                "selectedAddress": this.props.selectedAddress,
-              },
-            })
+                method: "POST",
+                data: {
+                  "UUID": uuid,
+                  "selectedAddress": this.props.selectedAddress,
+                },
+              })
               // Handle the response from backend here
               .then((ress) => {
                 // console.log(res, 'selected res')
@@ -341,16 +341,16 @@ export default class Home extends PureComponent {
                   // console.log('his.props.selectedAddress.toLowerCase()', this.props.selectedAddress.toLowerCase())
                   let uuidd = res.data.uuid
                   console.log(uuid, 'selected uuid')
-                  localStorage.setItem('uuid', uuidd);
-      
-      
+                  window.localStorage.setItem('uuid', uuidd);
+
+
                   if (uuidd) {
                     fetch(
                       "http://3.9.3.68:3000/api/selected-address",
                       {
-                      method: "POST",
-                      data: { "UUID": uuidd },
-                    })
+                        method: "POST",
+                        data: { "UUID": uuidd },
+                      })
                       // Handle the response from backend here
                       .then((resss) => {
                         if (resss.status == 200) {
@@ -370,7 +370,7 @@ export default class Home extends PureComponent {
               .catch((err) => {
                 console.log(err, 'axiox err update address')
               });
-      
+
           }
         })
         // Catch errors if any
@@ -381,7 +381,7 @@ export default class Home extends PureComponent {
 
 
 
-     
+
     }
   }
 
@@ -668,25 +668,25 @@ export default class Home extends PureComponent {
     );
   };
 
-  renderBalance = (pageName)=>{
+  renderBalance = (pageName) => {
     console.log(pageName)
-    switch(pageName){
+    switch (pageName) {
       case "Assets":
-        return(
+        return (
           <div className='home__BalanceData'>
             <label>313131</label>
-          </div>  
+          </div>
         );
         break;
       case "Fiat":
-        return(
+        return (
           <div className='BalanceDataValue'>
             <label>2131</label>
           </div>
         );
         break;
-      default :
-       return null;
+      default:
+        return null;
     }
 
   }
@@ -709,7 +709,6 @@ export default class Home extends PureComponent {
       firstTimeFlowType,
       completedOnboarding,
       selectedTabName,
-      ibandata,
     } = this.props;
 
     if (forgottenPassword) {
@@ -798,7 +797,7 @@ export default class Home extends PureComponent {
                 </div>
 
               </Tab>
-              { <Tab
+              {<Tab
                 activeClassName="home__tab--active"
                 className="home__tab"
                 data-testid="home__fiat-tab"
@@ -827,7 +826,7 @@ export default class Home extends PureComponent {
                 </div>
 
 
-              </Tab> }
+              </Tab>}
               <Tab
                 activeClassName="home__tab--active"
                 className="home__tab"
@@ -853,7 +852,7 @@ export default class Home extends PureComponent {
                   addressName="PropTypes.string"
                   backRoute="Setting"
                   currentPath="PropTypes.string"
-                  history={"shant"}
+                  // history={"shant"}
                   isAddressEntryPage
                   isPopup
                   isSnapViewPage

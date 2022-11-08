@@ -1,0 +1,74 @@
+.asset {
+  &__container {
+    // background-color: var(--color-background-default);
+    background-color: transparent;
+    // box-shadow: 0 3px 4px rgba(135, 134, 134, 0.16);
+    // background-color: pink;
+    @media screen and (max-width: $break-small) {
+      background-color: transparent;
+    }
+  }
+
+  &__overview {
+     box-shadow: 0 3px 4px rgba(135, 134, 134, 0.16);
+     background-color: #fff;
+   
+     @media screen and (max-width: $break-small) {
+      height: 174px;  
+      width: 90vw;
+      align-self: center;
+    }
+  
+    @media screen and (min-width: $break-large) {
+      height: 174px;
+    }
+
+  }
+}
+
+.asset-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  height: 64px;
+  background-color: #fff;
+  border-radius: 7px;
+  margin-bottom: 8px;
+  z-index: 20;
+  @media screen and (max-width: $break-small) {
+    width: 90vw;
+    align-self: center;
+  }
+
+}
+
+.asset-breadcrumb {
+  @include H6;
+
+  color: var(--color-text-default);
+  background-color: inherit;
+
+  &__chevron {
+    font-size: $font-size-paragraph;
+    padding: 0 10px 0 2px;
+    color: #6F767E;
+  }
+
+  &__asset {
+    font-weight: bold;
+  }
+}
+
+.asset-options {
+  &__button {
+    font-size: $font-size-paragraph;
+    color: var(--color-text-default);
+    background-color: inherit;
+    padding: 2px 0 2px 8px;
+  }
+
+  &__icon {
+    font-weight: 900;
+  }
+}

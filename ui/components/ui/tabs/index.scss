@@ -1,0 +1,78 @@
+@import 'tab/index';
+
+.tabs {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  
+  // Just for Firefox — https://github.com/Scallop/metamask-extension/issues/8700
+  -moz-transform: translateZ(0);
+
+  &__list {
+    display: flex;
+    justify-content: flex-start;
+    // border-top: 1px solid var(--color-border-default);
+    background-color: var(--color-background-default);
+    position: sticky;
+    top: 0;
+    z-index: 1;     
+    box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.05);
+    height: 88px;
+    width: 100vw;
+  }
+  &__content {
+   height: calc(100vh - 181px );
+   width: 80vw;
+ 
+    @media screen and (max-width: $break-small) {
+      -ms-overflow-style: none; /* for Internet Explorer, Edge */
+      scrollbar-width: none; /* for Firefox */
+      overflow-y: scroll; 
+      
+    }
+    
+  
+    // @media screen and (min-width: $break-large) {
+    //   height: 70vh;
+    // }
+  
+    // @media screen and (min-width: 769px) {
+    //   height:50vh;
+    // }
+  
+    // @media screen and (min-width: 1281px) {
+    //   height: 80vh;
+    // }
+  }
+  &__content::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
+  @media screen and (max-width: 575px){
+    .tabs {
+      width: 94vw;
+      &__content {
+        width: 94vw;
+      }
+    }
+  }
+  @media screen and (min-width: 576px){
+    .tabs {
+      width: 85vw;
+      &__content {
+          width: 85vw;
+      }
+    }
+  } 
+  @media screen and (min-width: 769px) {
+    .tabs {
+      width: 80vw;
+      &__content {
+        width: 80vw;
+        }
+    }
+    
+  }
+  
+}

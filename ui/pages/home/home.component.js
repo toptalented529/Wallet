@@ -310,7 +310,7 @@ export default class Home extends PureComponent {
     if (this.props.selectedAddress != this.state.selAcc) {
       this.setState({ selAcc: this.props.selectedAddress })
 
-      // let uuid = window.localStorage.getItem('uuid')
+      let uuid = window.localStorage.getItem('uuid')
       // fetch(
       //   "http://3.9.3.68:3000/api/selected-address",
       //   {

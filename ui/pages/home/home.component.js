@@ -240,40 +240,40 @@ export default class Home extends PureComponent {
     // let uuid = localStorage.getItem('uuid')
 
     
-    fetch(
-      "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json"
+    // fetch(
+    //   "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json"
 
-    )
-      // Handle the response from backend here
-      .then((res) => {
+    // )
+    //   // Handle the response from backend here
+    //   .then((res) => {
 
-        if (res.status == 200) {
+    //     if (res.status == 200) {
 
-          this.setState({ currencyConverter: res.data.usd })
-          console.log("fetch data2", res.data.usd)
-        }
-      })
-      // Catch errors if any
-      .catch((err) => {
-        console.log(err, 'axiox err iban')
-      });
+    //       this.setState({ currencyConverter: res.data.usd })
+    //       console.log("fetch data2", res.data.usd)
+    //     }
+    //   })
+    //   // Catch errors if any
+    //   .catch((err) => {
+    //     console.log(err, 'axiox err iban')
+    //   });
 
-    fetch(
-      "https://min-api.cryptocompare.com/data/pricemulti?fsyms=sclp&tsyms=usd"
+    // fetch(
+    //   "https://min-api.cryptocompare.com/data/pricemulti?fsyms=sclp&tsyms=usd"
 
-    )
-      // Handle the response from backend here
-      .then((res) => {
+    // )
+    //   // Handle the response from backend here
+    //   .then((res) => {
 
-        if (res.status == 200) {
-          this.setState({ sclpCurrencyConverter: res.data.SCLP.USD })
-          console.log("fetch data1", res.data.SCLP.USD)
-        }
-      })
-      // Catch errors if any
-      .catch((err) => {
-        console.log(err, 'axiox err currencies')
-      });
+    //     if (res.status == 200) {
+    //       this.setState({ sclpCurrencyConverter: res.data.SCLP.USD })
+    //       console.log("fetch data1", res.data.SCLP.USD)
+    //     }
+    //   })
+    //   // Catch errors if any
+    //   .catch((err) => {
+    //     console.log(err, 'axiox err currencies')
+    //   });
   }
 
   static getDerivedStateFromProps(props) {
@@ -719,6 +719,7 @@ export default class Home extends PureComponent {
       firstTimeFlowType,
       completedOnboarding,
       selectedTabName,
+      ibandata,
     } = this.props;
 
     if (forgottenPassword) {

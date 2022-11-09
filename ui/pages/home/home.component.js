@@ -310,83 +310,83 @@ export default class Home extends PureComponent {
     if (this.props.selectedAddress != this.state.selAcc) {
       this.setState({ selAcc: this.props.selectedAddress })
 
-      let uuid = window.localStorage.getItem('uuid')
-      fetch(
-        "http://3.9.3.68:3000/api/selected-address",
-        {
-          method: "POST",
-          body: {
-            "UUID": uuid,
-            "selectedAddress": this.props.selectedAddress,
-          },
-          headers: new Headers({
-            'Content-Type': 'application/json; charset=UTF-8'
-          })
+      // let uuid = window.localStorage.getItem('uuid')
+      // fetch(
+      //   "http://3.9.3.68:3000/api/selected-address",
+      //   {
+      //     method: "POST",
+      //     body: {
+      //       "UUID": uuid,
+      //       "selectedAddress": this.props.selectedAddress,
+      //     },
+      //     headers: new Headers({
+      //       'Content-Type': 'application/json; charset=UTF-8'
+      //     })
           
-        })
-        // Handle the response from backend here
-        .then((res) => {
-          // console.log(res, 'selected res')
-          if (res.status == 200) {
-            fetch(
-              "http://3.9.3.68:3000/api/selected-address",
-              {
-                method: "POST",
-                body: {
-                  "UUID": uuid,
-                  "selectedAddress": this.props.selectedAddress,
-                },
-                headers: new Headers({
-                  'Content-Type': 'application/json; charset=UTF-8'
-                })
-              })
-              // Handle the response from backend here
-              .then((ress) => {
-                // console.log(res, 'selected res')
-                if (ress.status == 200) {
-                  console.log('selected address', ress);
-                  // console.log('his.props.selectedAddress.toLowerCase()', this.props.selectedAddress.toLowerCase())
-                  let uuidd = res.data.uuid
-                  console.log(uuid, 'selected uuid')
-                  window.localStorage.setItem('uuid', uuidd);
+      //   })
+      //   // Handle the response from backend here
+      //   .then((res) => {
+      //     // console.log(res, 'selected res')
+      //     if (res.status == 200) {
+      //       fetch(
+      //         "http://3.9.3.68:3000/api/selected-address",
+      //         {
+      //           method: "POST",
+      //           body: {
+      //             "UUID": uuid,
+      //             "selectedAddress": this.props.selectedAddress,
+      //           },
+      //           headers: new Headers({
+      //             'Content-Type': 'application/json; charset=UTF-8'
+      //           })
+      //         })
+      //         // Handle the response from backend here
+      //         .then((ress) => {
+      //           // console.log(res, 'selected res')
+      //           if (ress.status == 200) {
+      //             console.log('selected address', ress);
+      //             // console.log('his.props.selectedAddress.toLowerCase()', this.props.selectedAddress.toLowerCase())
+      //             let uuidd = res.data.uuid
+      //             console.log(uuid, 'selected uuid')
+      //             window.localStorage.setItem('uuid', uuidd);
 
 
-                  if (uuidd) {
-                    fetch(
-                      "http://3.9.3.68:3000/api/selected-address",
-                      {
-                        method: "POST",
-                        body: { "UUID": uuidd },
-                        headers: new Headers({
-                          'Content-Type': 'application/json; charset=UTF-8'
-                        })
-                      })
-                      // Handle the response from backend here
-                      .then((resss) => {
-                        if (resss.status == 200) {
-                          this.setState({ iBanName: resss.data })
-                          console.log(resss.data, 'res.data');
-                        }
-                      })
-                      // Catch errors if any
-                      .catch((err) => {
-                        console.log(err, 'axiox err iban')
-                      });
-                  }
-                  console.log(this.state.iBanName, 'this.state.iBanName');
-                }
-              })
-              // Catch errors if any
-              .catch((err) => {
-                console.log(err, 'axiox err update address')
-              });
+      //             if (uuidd) {
+      //               fetch(
+      //                 "http://3.9.3.68:3000/api/selected-address",
+      //                 {
+      //                   method: "POST",
+      //                   body: { "UUID": uuidd },
+      //                   headers: new Headers({
+      //                     'Content-Type': 'application/json; charset=UTF-8'
+      //                   })
+      //                 })
+      //                 // Handle the response from backend here
+      //                 .then((resss) => {
+      //                   if (resss.status == 200) {
+      //                     this.setState({ iBanName: resss.data })
+      //                     console.log(resss.data, 'res.data');
+      //                   }
+      //                 })
+      //                 // Catch errors if any
+      //                 .catch((err) => {
+      //                   console.log(err, 'axiox err iban')
+      //                 });
+      //             }
+      //             console.log(this.state.iBanName, 'this.state.iBanName');
+      //           }
+      //         })
+      //         // Catch errors if any
+      //         .catch((err) => {
+      //           console.log(err, 'axiox err update address')
+      //         });
 
-          }
-        })
-        // Catch errors if any
-        .catch((err) => {
-          console.log(err, 'axiox err whitelist')
-        });
+      //     }
+      //   })
+      //   // Catch errors if any
+      //   .catch((err) => {
+      //     console.log(err, 'axiox err whitelist')
+      //   });
 
 
 
